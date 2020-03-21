@@ -1,0 +1,332 @@
+/*
+On va faire en sorte que notre jeu soit responsive, pour cela, on va d'abord donner les styles pour la vue mobile (mobile first).
+Puis, à l'aide de media queries, on changera seulement les styles qui seront différents pour un affichage sur écran supérieur
+ */
+/*GENERAL*/
+.flex {
+    display: flex;
+    justify-content: center;
+}
+
+.around {
+    justify-content: space-around;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+table, tr, thead, tbody, th, td {
+    border: 1px solid black;
+    /*border-collapse permet de souder les différentes bordures du tableau, afin de n'en avoir plus qu'une*/
+    border-collapse: collapse;
+}
+
+/*Partie jeux*/
+.jeux_container {
+    width: 90%;
+    max-width: 919px;
+    margin: 10px auto;
+}
+
+/* cartes */
+.card {
+    width: 45px;
+    height: 50px;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px gray;
+    border-radius: 5px;
+    /*Pour des raisons de chargement, on utilise un sprite, toutes les images seront sur la même image, on changera les visuels en travaillant sur le background-position*/
+    background: url("../img/cardsXs.png");
+    background-position-x: -2.5px;
+    margin: 2.5px;
+}
+
+/*on génère maintenant les différents visuels des cartes en changeant la position y (verticale) du background, suivant le fruit que l'on veut*/
+.pomme_rouge {
+    background-position-y: 0;
+}
+
+.banane {
+    background-position-y: -50px;
+}
+
+.orange {
+    background-position-y: -100px;
+}
+
+.citron_vert {
+    background-position-y: -150px;
+}
+
+.grenade {
+    background-position-y: -200px;
+}
+
+.peche {
+    background-position-y: -250px;
+}
+
+.citron_jaune {
+    background-position-y: -300px;
+}
+
+.fraise {
+    background-position-y: -350px;
+}
+
+.pomme_verte {
+    background-position-y: -400px;
+}
+
+.brugnon {
+    background-position-y: -450px;
+}
+
+.raisin {
+    background-position-y: -500px;
+}
+
+.pasteque {
+    background-position-y: -550px;
+}
+
+.peche_violette {
+    background-position-y: -600px;
+}
+
+.poire {
+    background-position-y: -650px;
+}
+
+.cerises {
+    background-position-y: -700px;
+}
+
+.framboise {
+    background-position-y: -750px;
+}
+
+.mangue {
+    background-position-y: -800px;
+}
+
+.cerises_jaunes {
+    background-position-y: -850px;
+}
+
+/*les cartes ayant la class hidden auront un background différent (le logo o'clock), le fait que ce style soit déclaré après tous les autres n'est pas anodin, le css marche en cascade, c'est le dernier style qui sera pris en compte*/
+/*!important est nécessaire ici, car je vais redéfinir le style des cartes après, dans un media query, si je ne le mettais pas, ce style ne serait pas pris en compte*/
+.hidden {
+    background: url("../img/oclock.png") center !important;
+    background-size: contain !important;
+}
+
+.hidden:hover {
+    cursor: pointer;
+    /*histoire de s'amuser un peut avec le css, parce qu'on aime ça, on va donner l'impression que les cartes se soulèvent au passage de la souris, avec les 2 styles suivants */
+    box-shadow: 2px 2px 5px gray;
+    transform: translate(-2px, -2px);
+}
+
+/* timer */
+
+.timer {
+    width: 80%;
+    height: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 20px auto;
+    overflow: hidden;
+    box-shadow: 2px 2px 5px grey;
+    /*Je met la visibilitée à hidden ici car je veux que le timer ne soit visique qu'une fois le jeux lancé*/
+    visibility: hidden;
+}
+
+.jauge {
+    /*on initialise le width a 0%, ce sera ensuite le js, avec la fonction timer, qui va l'agrémenter toutes les 100ms*/
+    width: 0%;
+    height: 100%;
+    background-color: green;
+    transition: background-color 300ms;
+}
+
+/* popup score */
+.score_popup {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.score_popup_body {
+    width: 80%;
+    max-width: 500px;
+    max-height: 90%; /*on limite la hauteur à 90% afin de ne pas avoir un popup qui sort de l'écran*/
+    overflow: scroll;
+    /*afin d'avoir toujours un popup centré, on le met en position absolute*/
+    position: absolute;
+    /*on lui donne un top et un left de 50% de la taille du parent, il sera donc positionné a 50% du width (de son parent) depuis la gauche et a 50% du height (de son parent) depuis le haut*/
+    left: 50%;
+    top: 50%;
+    /*et afin de le centrer, on utilise la fonction translate de transform qui va le déplacer de 50% de sa hauteur vers le haut et de 50% de sa largeur vers la gauche*/
+    transform: translate(-50%,-50%);
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+}
+
+.score_popup_body h1 {
+    margin-top: 0;
+    font-size: 20px;
+}
+
+table {
+    width: 90%;
+    margin: auto;
+}
+
+th {
+    padding: 15px;
+}
+
+/*Pour les boutons, on en a 3 qui ont la même class "btn" et ils ont chacun un class différente, on commence donc par donner les styles communs à la class btn*/
+.btn {
+    padding: 10px 0;
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    font-weight: bold;
+    transition: all 0.5s;
+    width: 25%;
+}
+
+.btn:hover {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+/*Et ensuite, pour chaque class btn différentes, on ajoute les styles spécifiques*/
+.btn_easy {
+    background-color: green;
+}
+
+.btn_easy:hover {
+    border: 1px solid green;
+    color: green;
+}
+
+.btn_hard {
+    background-color: darkorange;
+}
+
+.btn_hard:hover {
+    border: 1px solid darkorange;
+    color: darkorange;
+}
+
+.btn_extrem {
+    background-color: red;
+}
+
+.btn_extrem:hover {
+    border: 1px solid red;
+    color: red;
+}
+
+/*Avec le média query, on va pouvoir changer le style a partir de 700px, ici on met une image plus grande en background et on augmente les dimensions des cartes*/
+@media screen and (min-width: 700px) {
+    /* cartes */
+    .card {
+        width: 90px;
+        height: 100px;
+        background: url("../img/cards.png");
+        background-position-x: -5px;
+        margin: 5px;
+    }
+
+    .pomme_rouge {
+        background-position-y: 0;
+    }
+
+    .banane {
+        background-position-y: -100px;
+    }
+
+    .orange {
+        background-position-y: -200px;
+    }
+
+    .citron_vert {
+        background-position-y: -300px;
+    }
+
+    .grenade {
+        background-position-y: -400px;
+    }
+
+    .peche {
+        background-position-y: -500px;
+    }
+
+    .citron_jaune {
+        background-position-y: -600px;
+    }
+
+    .fraise {
+        background-position-y: -700px;
+    }
+
+    .pomme_verte {
+        background-position-y: -800px;
+    }
+
+    .brugnon {
+        background-position-y: -900px;
+    }
+
+    .raisin {
+        background-position-y: -1000px;
+    }
+
+    .pasteque {
+        background-position-y: -1100px;
+    }
+
+    .peche_violette {
+        background-position-y: -1200px;
+    }
+
+    .poire {
+        background-position-y: -1300px;
+    }
+
+    .cerises {
+        background-position-y: -1400px;
+    }
+
+    .framboise {
+        background-position-y: -1500px;
+    }
+
+    .mangue {
+        background-position-y: -1600px;
+    }
+
+    .cerises_jaunes {
+        background-position-y: -1700px;
+    }
+
+    /* popup score */
+    .score_popup_body {
+        overflow: auto;
+    }
+
+    .score_popup_body h1 {
+        font-size: 26px;
+    }
+
+}
