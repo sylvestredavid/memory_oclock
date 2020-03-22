@@ -1,6 +1,6 @@
 /*
-On va faire en sorte que notre jeu soit responsive, pour cela, on va d'abord donner les styles pour la vue mobile (mobile first).
-Puis, à l'aide de media queries, on changera seulement les styles qui seront différents pour un affichage sur écran supérieur
+On va faire en sorte que notre jeu soit responsive, pour cela, on va d'abord donner les règles pour la vue mobile (mobile first).
+Puis, à l'aide de media queries, on changera seulement les règles qui seront différents pour un affichage sur écran supérieur
  */
 /*GENERAL*/
 .flex {
@@ -115,8 +115,8 @@ table, tr, thead, tbody, th, td {
     background-position-y: -850px;
 }
 
-/*les cartes ayant la class hidden auront un background différent (le logo o'clock), le fait que ce style soit déclaré après tous les autres n'est pas anodin, le css marche en cascade, c'est le dernier style qui sera pris en compte*/
-/*!important est nécessaire ici, car je vais redéfinir le style des cartes après, dans un media query, si je ne le mettais pas, ce style ne serait pas pris en compte*/
+/*les cartes ayant la class hidden auront un background différent (le logo o'clock), le fait que ces règles soient déclarées après tous les autres n'est pas anodin, le css marche en cascade, c'est la dernière règle qui sera pris en compte*/
+/*!important est nécessaire ici, car je vais redéfinir le style des cartes après, dans un media query, si je ne le mettais pas, cette règle ne serait pas pris en compte*/
 .hidden {
     background: url("../img/oclock.png") center !important;
     background-size: contain !important;
@@ -124,7 +124,7 @@ table, tr, thead, tbody, th, td {
 
 .hidden:hover {
     cursor: pointer;
-    /*histoire de s'amuser un peut avec le css, parce qu'on aime ça, on va donner l'impression que les cartes se soulèvent au passage de la souris, avec les 2 styles suivants */
+    /*histoire de s'amuser un peut avec le css, parce qu'on aime ça, on va donner l'impression que les cartes se soulèvent au passage de la souris, avec les 2 règles suivantes */
     box-shadow: 2px 2px 5px gray;
     transform: translate(-2px, -2px);
 }
@@ -193,7 +193,7 @@ th {
     padding: 15px;
 }
 
-/*Pour les boutons, on en a 3 qui ont la même class "btn" et ils ont chacun un class différente, on commence donc par donner les styles communs à la class btn*/
+/*Pour les boutons, on en a 3 qui ont la même class "btn" et ils ont chacun un class différente, on commence donc par donner les règles communes à la class btn*/
 .btn {
     padding: 10px 0;
     color: white;
@@ -209,7 +209,7 @@ th {
     cursor: pointer;
 }
 
-/*Et ensuite, pour chaque class btn différentes, on ajoute les styles spécifiques*/
+/*Et ensuite, pour chaque class btn différentes, on ajoute les règles spécifiques*/
 .btn_easy {
     background-color: green;
 }

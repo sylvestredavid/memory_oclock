@@ -1,4 +1,4 @@
-create schema if not exists memory_db collate utf8mb4_0900_ai_ci;
+create schema if not exists memory_db;
 
 create table if not exists memory_db.dificulty
 (
