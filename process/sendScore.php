@@ -5,7 +5,7 @@ require('../models/Dificulty.php');
 require("../controllers/ScoreController.php");
 require('../utils/constantes.php');
 
-//on appelle notre base de donnée à l'aide d'un objet PDO, on utilise les constantes pour une meilleur maintenance
+//on se connecte à notre base de donnée à l'aide d'un objet PDO, on utilise les constantes pour une meilleur maintenance
 $dbh = new PDO('mysql: host='.DB_HOST.'; dbname=' . DB_NAME . '; charset=UTF8', USER_DB, MDP_DB);
 
 //on récupère les données envoyées par notre requête ajax, grâce à la variable globale $_POST
