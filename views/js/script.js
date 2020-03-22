@@ -57,6 +57,8 @@ function timer() {
             clearInterval(timerInterval);
             if (confirm('Perdu... \n Rejouer?')) {
                 location.reload();
+            } else {
+                alert('Merci d\'avoir joué!')
             }
             end = true;
         }
@@ -149,7 +151,11 @@ function saveScore(name) {
         dataType : 'text', // le type de données RECUES de php, ici text suffis car on a juste à vérifier si on a reçus "success"
         success: function(res){ // et la fonction à réaliser une fois la requête réussie
             if(res === "success") {
-                alert('Votre score a bien été enregistré.')
+                if (confirm('Votre score a bien été enregistré. \n Rejouer?')) {
+                    location.reload();
+                } else {
+                    alert('Merci d\'avoir joué!')
+                }
             } else {
                 console.log(res)
             }

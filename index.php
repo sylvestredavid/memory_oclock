@@ -40,39 +40,40 @@
             <div class="score_popup_body">
                 <h1>Bienvenue sur le memory d'o'clock</h1>
                 <p>Vous avez 3min pour trouver 10, 14 ou 18 paires de cartes</p>
-                <p>Voici les meilleurs scores :</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Rang</th>
-                            <th>Nom</th>
-                            <th>Temps</th>
-                            <th>Niveau</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <!--
-                        ici j'affiche mes données à l'aide de la syntaxe alternative, au lieu d'avoir un gros bloc de php avec des echo dedans, ça rend le code plus claire,
-                        voici un article qui explique tout ça: https://www.hakharien.fr/article-better-coding-php
-                    -->
-                    <?php foreach ($scores as $rang => $score): ?> <!--on fait un foreach sur notre variable $score qui n'est autre qu'un array, avec le foreach on va parcourir tous les éléments (foreach = pour chacun cqfd^^)-->
-                        <tr>
-                            <td>
-                                <p><?= $rang + 1 ?></p> <!--pour le rang, je n'ai qu'à récupérer l'index de l'élément et rajouter 1, et oui un array commence à l'index 0 (si on n'a pas défini nous même les index)-->
-                            </td>
-                            <td>
-                                <p><?= $score->getName() ?></p> <!--j'affiche le nom avec le getter getName, attributs privé oblige...-->
-                            </td>
-                            <td>
-                                <p><?= gmdate("i:s", $score->getTime()) ?></p> <!--et là, plutôt que de réinventer la roue, je transforme mon temps qui est en secondes en minutes:secondes grâce à gmdate: https://www.php.net/manual/fr/function.gmdate.php-->
-                            </td>
-                            <td>
-                                <p><?= $score->getDificulty()->getName() ?></p>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?> <!--j'oublie pas de fermer mon foreach!-->
-                    </tbody>
-                </table>
+                <!--
+                    ici j'affiche mes données à l'aide de la syntaxe alternative, au lieu d'avoir un gros bloc de php avec des echo dedans, ça rend le code plus claire,
+                    voici un article qui explique tout ça: https://www.hakharien.fr/article-better-coding-php
+                -->
+                <?php if(count($scores) > 0): ?><!--on affiche le tableau des scores que si $scores n'est pas vide -->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rang</th>
+                                <th>Nom</th>
+                                <th>Temps</th>
+                                <th>Niveau</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($scores as $rang => $score): ?> <!--on fait un foreach sur notre variable $score qui n'est autre qu'un array, avec le foreach on va parcourir tous les éléments (foreach = pour chacun cqfd^^)-->
+                                <tr>
+                                    <td>
+                                        <p><?= $rang + 1 ?></p> <!--pour le rang, je n'ai qu'à récupérer l'index de l'élément et rajouter 1, et oui un array commence à l'index 0 (si on n'a pas défini nous même les index)-->
+                                    </td>
+                                    <td>
+                                        <p><?= $score->getName() ?></p> <!--j'affiche le nom avec le getter getName, attributs privé oblige...-->
+                                    </td>
+                                    <td>
+                                        <p><?= gmdate("i:s", $score->getTime()) ?></p> <!--et là, plutôt que de réinventer la roue, je transforme mon temps qui est en secondes en minutes:secondes grâce à gmdate: https://www.php.net/manual/fr/function.gmdate.php-->
+                                    </td>
+                                    <td>
+                                        <p><?= $score->getDificulty()->getName() ?></p>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?> <!--j'oublie pas de fermer mon foreach!-->
+                        </tbody>
+                    </table>
+                <?php endif; ?>
                 <div class="btn_container">
                     <p>Choisissez votre difficultée :</p>
                 </div>
