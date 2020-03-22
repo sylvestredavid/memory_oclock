@@ -25,7 +25,7 @@ table, tr, thead, tbody, th, td {
 /*Partie jeux*/
 .jeux_container {
     width: 90%;
-    max-width: 919px;
+    max-width: 920px;
     margin: 10px auto;
 }
 
@@ -144,8 +144,8 @@ table, tr, thead, tbody, th, td {
 }
 
 .jauge {
-    /*on initialise le width a 0%, ce sera ensuite le js, avec la fonction timer, qui va l'agrémenter toutes les 100ms*/
-    width: 0%;
+    /*on initialise le width à 0%, ce sera ensuite le js, avec la fonction timer, qui va l'agrémenter toutes les 100ms*/
+    width: 0;
     height: 100%;
     background-color: green;
     transition: background-color 300ms;
@@ -168,7 +168,7 @@ table, tr, thead, tbody, th, td {
     overflow: scroll;
     /*afin d'avoir toujours un popup centré, on le met en position absolute*/
     position: absolute;
-    /*on lui donne un top et un left de 50% de la taille du parent, il sera donc positionné a 50% du width (de son parent) depuis la gauche et a 50% du height (de son parent) depuis le haut*/
+    /*on lui donne un top et un left de 50% de la taille du parent, il sera donc positionné à 50% du width (de son parent) depuis la gauche et à 50% du height (de son parent) depuis le haut*/
     left: 50%;
     top: 50%;
     /*et afin de le centrer, on utilise la fonction translate de transform qui va le déplacer de 50% de sa hauteur vers le haut et de 50% de sa largeur vers la gauche*/
@@ -193,7 +193,7 @@ th {
     padding: 15px;
 }
 
-/*Pour les boutons, on en a 3 qui ont la même class "btn" et ils ont chacun un class différente, on commence donc par donner les règles communes à la class btn*/
+/*Pour les boutons, on en a 3 qui ont la même class "btn", on dira que c'est notre class bouton générique et ils ont chacun un class différente, on commence donc par donner les règles communes à la class btn*/
 .btn {
     padding: 10px 0;
     color: white;
@@ -237,7 +237,7 @@ th {
     color: red;
 }
 
-/*Avec le média query, on va pouvoir changer le style a partir de 700px, ici on met une image plus grande en background et on augmente les dimensions des cartes*/
+/*Avec le média query, on va pouvoir changer le style à partir de 700px, ici on met une image plus grande en background et on augmente les dimensions des cartes*/
 @media screen and (min-width: 700px) {
     /* cartes */
     .card {
@@ -248,10 +248,7 @@ th {
         margin: 5px;
     }
 
-    .pomme_rouge {
-        background-position-y: 0;
-    }
-
+    /*et bien sûr, on change le background position y de nos images, comme l'image de base est plus grande.*/
     .banane {
         background-position-y: -100px;
     }

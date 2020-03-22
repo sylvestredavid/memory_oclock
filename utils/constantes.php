@@ -4,4 +4,5 @@ define('USER_DB', 'root');
 define('MDP_DB', '0000');
 define('DB_NAME', 'memory_db');
 define('DB_HOST', 'localhost');
+define('DB_PORT', '3306');
 ?>

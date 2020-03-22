@@ -31,7 +31,10 @@ class ScoreController
             exit;
         }
         $scores = array();
-        $stmt = $this->db->prepare('SELECT scores.name, time, dificulty.name as dificulty, dificulty_id FROM scores INNER JOIN dificulty ON dificulty.id = dificulty_id order by dificulty_id DESC, time ASC LIMIT 10'); //on prépare la requete
+        // Petite explication de la requête: on va selectionner les colonnes name, time et dificulty_id de la table scores, ainsi que la colonne name de la table difficulty
+        // en joignant la table dificulty via la colonne id de difficulty et la colonne difficulty_id de scores, on les trie par dificulty_id du plus grand au plus petit et ensuite par time du plus petit au plus grand,
+        // et on ne prend que les 10 premiers résultats
+        $stmt = $this->db->prepare('SELECT scores.name, time, dificulty.name as dificulty, dificulty_id FROM scores INNER JOIN dificulty ON dificulty.id = dificulty_id order by dificulty_id DESC, time ASC LIMIT 10'); //on prépare la requête
         $stmt->execute(); // on l'envoi
         while ($row = $stmt->fetch()) { // puis on fait un mapping : on boucle sur le résultat pour créer un nouvel objet à chaque nouvelle ligne, ici on les stock ensuite dans un array qu'on retourne
             $scores[] = new Score($row['name'], $row['time'], new Dificulty($row['dificulty_id'], $row['dificulty']));
@@ -51,7 +54,7 @@ class ScoreController
         $dificultyId = $score->getDificulty()->getId();
         try{
             $this->db;
-            $stmt = $this->db->prepare('INSERT INTO scores(name, time, dificulty_id) VALUES(:name, :time, :dificultyId)'); //on prépare la requete
+            $stmt = $this->db->prepare('INSERT INTO scores(name, time, dificulty_id) VALUES(:name, :time, :dificultyId)'); //on prépare la requête
             $stmt->bindParam(':name', $name); // on lui passe les paramètres nécessaires
             $stmt->bindParam(':time', $time);
             $stmt->bindParam(':dificultyId', $dificultyId);
