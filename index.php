@@ -39,6 +39,7 @@
         <div class="score_popup" id="popup">
             <div class="score_popup_body">
                 <h1>Bienvenue sur le memory d'o'clock</h1>
+                <p>Vous avez 3min pour trouver 10, 14 ou 18 paires de cartes</p>
                 <p>Voici les meilleurs scores :</p>
                 <table>
                     <thead>
