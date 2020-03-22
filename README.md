@@ -2,7 +2,7 @@
 
 1. Clonez le projet dans le dossier de votre serveur local (htdocs pour xampp, www pour wamp)
 
-2. Exécutez le script de génération de la base de données (utils/bdd.sql) dans phpMyAdmin (ou autres si vous ne passez pas par là)
+2. Exécutez le script de génération de la base de données (utils/db.sql) dans phpMyAdmin (ou autres si vous ne passez pas par là)
 
 3. Rendez-vous dans utils/constantes.php et changez la valeur de USER_DB et MDP_DB
 
