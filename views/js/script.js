@@ -6,8 +6,8 @@ let time = 0;
 let end = false;
 let dificulty;
 let nbCardToFind;
-let fruitsEasy = ['banane','pomme_verte', 'raisin', 'pasteque', 'peche_violette', 'poire', 'cerises', 'framboise', 'mangue', 'cerises_jaunes',
-    'banane','pomme_verte', 'raisin', 'pasteque', 'peche_violette', 'poire', 'cerises', 'framboise', 'mangue', 'cerises_jaunes'];
+let fruitsEasy = ['banane', 'pomme_verte', 'raisin', 'pasteque', 'peche_violette', 'poire', 'cerises', 'framboise', 'mangue', 'cerises_jaunes',
+    'banane', 'pomme_verte', 'raisin', 'pasteque', 'peche_violette', 'poire', 'cerises', 'framboise', 'mangue', 'cerises_jaunes'];
 
 let fruitsHard = ['pomme_rouge', 'banane', 'citron_vert', 'grenade', 'citron_jaune', 'fraise',
     'pomme_verte', 'raisin', 'pasteque', 'poire', 'cerises', 'framboise', 'mangue', 'cerises_jaunes',
@@ -47,7 +47,7 @@ function timer() {
                 jauge.width((time * 100 / 180) + "%");
                 if (time >= 60 && time < 120) { // si time est supérieur à 60 et inférieur à 90, on passe la jauge en orange... on a encore le temps...
                     jauge.css("background-color", "orange")
-                }else if (time >= 120) { // sinon si time est supérieur à 120, on passe la jauge en rouge... viiiiiiiiiite!!!!
+                } else if (time >= 120) { // sinon si time est supérieur à 120, on passe la jauge en rouge... viiiiiiiiiite!!!!
                     jauge.css("background-color", "red")
                 }
             } else { // si end est à true, le jeu est fini on supprime le setInterval
@@ -73,9 +73,9 @@ function timer() {
 function generateCards() {
     // on crée une nouvelle variable qui sera égale a un des 3 tableaux de fruits suivant la difficultée
     let fruits;
-    if(dificulty === 1) {
+    if (dificulty === 1) {
         fruits = fruitsEasy;
-    } else if(dificulty === 2) {
+    } else if (dificulty === 2) {
         fruits = fruitsHard;
     } else {
         fruits = fruitsExtrem
@@ -143,14 +143,14 @@ function saveScore(name) {
     //on crée une requête AJAX de type POST
     $.post({
         url: "./process/sendScore.php", //le fichier de destination
-        data : {
+        data: {
             name: name,
             time: Math.floor(time),
             dificulty: dificulty
         }, // les données qu'on envoie
-        dataType : 'text', // le type de données RECUES de php, ici text suffis car on a juste à vérifier si on a reçus "success"
-        success: function(res){ // et la fonction à réaliser une fois la requête réussie
-            if(res === "success") {
+        dataType: 'text', // le type de données RECUES de php, ici text suffis car on a juste à vérifier si on a reçus "success"
+        success: function (res) { // et la fonction à réaliser une fois la requête réussie
+            if (res === "success") {
                 if (confirm('Votre score a bien été enregistré. \n Rejouer?')) {
                     location.reload();
                 } else {
