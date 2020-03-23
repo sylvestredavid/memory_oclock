@@ -1,3 +1,4 @@
+//création des variables
 let cards;
 let nbCardFind = 0;
 let nbCartTurn = 0;
@@ -6,6 +7,7 @@ let time = 0;
 let end = false;
 let dificulty;
 let nbCardToFind;
+//on a 3 tableaux représentant les cartes des 3 difficultés
 let fruitsEasy = ['banane', 'pomme_verte', 'raisin', 'pasteque', 'peche_violette', 'poire', 'cerises', 'framboise', 'mangue', 'cerises_jaunes',
     'banane', 'pomme_verte', 'raisin', 'pasteque', 'peche_violette', 'poire', 'cerises', 'framboise', 'mangue', 'cerises_jaunes'];
 
@@ -85,7 +87,7 @@ function generateCards() {
         return Math.random() - .5 // là, je ne vais pas mentir, j'ai trouvé cette fonction avec google^^, c'est aussi ça le métier de dev, trouver des ressources sur le net : https://www.hakharien.fr/article-array-shuffle-js
     });
     fruits.forEach(f => {
-        $("#cards_container").append($(`<div class="card ${f} hidden"></div>`))
+        $("#cards_container").append($(`<div class="card ${f} hidden"></div>`)) // pour chaque entrée du tableau, on crée une div ayant la class card, la class de l'entrée du tableau, et la class hidden, et on l'atache à la div #cards_container
     });
     cards = $(".card"); //on finit par récupérer toutes les cartes dans un tableau
 }

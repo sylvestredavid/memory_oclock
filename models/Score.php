@@ -10,6 +10,7 @@ class Score
     private $name;
     private $time;
     private $dificulty;
+
     /**
      * Score constructor.
      * @param $name

@@ -21,13 +21,13 @@ class ScoreController
      * Méthode de récupération des 10 meilleurs temps
      * @return array
      */
-    public function getTopTen(){
+    public function getTopTen()
+    {
         //le try catch va permettre de récupérer et d'afficher l'erreur
-        try{
+        try {
             $this->db;
-        }
-        catch(Exeption $e){
-            echo 'Message erreur sql : '.$e->getMessage().'<br>';
+        } catch (Exeption $e) {
+            echo 'Message erreur sql : ' . $e->getMessage() . '<br>';
             exit;
         }
         $scores = array();
@@ -47,12 +47,13 @@ class ScoreController
      * @param Score $score
      * @return string
      */
-    public function add(Score $score){
+    public function add(Score $score)
+    {
         // on récupère les attributs de notre objet $score
         $name = htmlspecialchars($score->getName()); // ici on utilise htmlspecialchars, une fonction de php qui convertit les caractères spéciaux en entités HTML afin d'éviter les failles xss: https://fr.wikipedia.org/wiki/Cross-site_scripting
         $time = $score->getTime();
         $dificultyId = $score->getDificulty()->getId();
-        try{
+        try {
             $this->db;
             $stmt = $this->db->prepare('INSERT INTO scores(name, time, dificulty_id) VALUES(:name, :time, :dificultyId)'); //on prépare la requête
             $stmt->bindParam(':name', $name); // on lui passe les paramètres nécessaires
@@ -60,9 +61,8 @@ class ScoreController
             $stmt->bindParam(':dificultyId', $dificultyId);
             $stmt->execute();
             return "success"; // enfin on retourne success, il sera retourné à notre requête ajax pour savoir si l'opération s'est déroulée sans soucis et faire le nécessaire en JS
-        }
-        catch(Exeption $e){
-            return 'Message erreur sql : '.$e->getMessage(); // en cas d'erreur le catch attrape l'exception et la renvoi, ainsi on pourra l'afficher dans la console de JS
+        } catch (Exeption $e) {
+            return 'Message erreur sql : ' . $e->getMessage(); // en cas d'erreur le catch attrape l'exception et la renvoi, ainsi on pourra l'afficher dans la console de JS
         }
     }
 

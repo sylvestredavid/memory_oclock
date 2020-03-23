@@ -6,7 +6,7 @@ require("../controllers/ScoreController.php");
 require('../utils/constantes.php');
 
 //on se connecte à notre base de donnée à l'aide d'un objet PDO, on utilise les constantes pour une meilleur maintenance
-$dbh = new PDO('mysql: host='.DB_HOST.'; port='.DB_PORT.'; dbname='.DB_NAME.'; charset=UTF8', DB_USER, DB_MDP);
+$dbh = new PDO('mysql: host=' . DB_HOST . '; port=' . DB_PORT . '; dbname=' . DB_NAME . '; charset=UTF8', DB_USER, DB_MDP);
 
 //on récupère les données envoyées par notre requête ajax, grâce à la variable globale $_POST
 $name = $_POST['name'];
