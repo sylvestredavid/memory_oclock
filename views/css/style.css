@@ -172,7 +172,7 @@ table, tr, thead, tbody, th, td {
     left: 50%;
     top: 50%;
     /*et afin de le centrer, on utilise la fonction translate de transform qui va le déplacer de 50% de sa hauteur vers le haut et de 50% de sa largeur vers la gauche*/
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     background-color: white;
     border-radius: 5px;
     padding: 20px;
